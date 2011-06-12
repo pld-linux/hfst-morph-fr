@@ -1,0 +1,34 @@
+--- hfst-french-installable/Makefile.orig	2011-04-27 16:20:48.000000000 +0200
++++ hfst-french-installable/Makefile	2011-06-12 19:40:42.991959463 +0200
+@@ -10,19 +10,19 @@
+ generator_script = $(binarypath)/${langname}-generate.sh
+ 
+ install:
+-	install -m 0775 -d $(transducerpath)
+-	install -m 0664 $(analyzer_transducer) --target-directory=$(transducerpath)
+-	install -m 0664 $(generator_transducer) --target-directory=$(transducerpath)
++	install -m 0775 -d $(DESTDIR)$(transducerpath) $(DESTDIR)$(binarypath)
++	install -m 0664 $(analyzer_transducer) --target-directory=$(DESTDIR)$(transducerpath)
++	install -m 0664 $(generator_transducer) --target-directory=$(DESTDIR)$(transducerpath)
+ 	sed -e s,BINPATH,$(binarypath),g -e s,TRPATH,$(transducerpath),g \
+-		< ${langname}-analyze.sh > $(binarypath)/${langname}-analyze.sh
++		< ${langname}-analyze.sh > $(DESTDIR)$(binarypath)/${langname}-analyze.sh
+ 	sed -e s,BINPATH,$(binarypath),g -e s,TRPATH,$(transducerpath),g \
+-		< ${langname}-generate.sh > $(binarypath)/${langname}-generate.sh
+-	chmod 0755 $(analyzer_script)
+-	chmod 0755 $(generator_script)
++		< ${langname}-generate.sh > $(DESTDIR)$(binarypath)/${langname}-generate.sh
++	chmod 0755 $(DESTDIR)$(analyzer_script)
++	chmod 0755 $(DESTDIR)$(generator_script)
+ 
+ clean:
+-	rm -f $(transducerpath)/$(analyzer_transducer)
+-	rm -f $(transducerpath)/$(generator_transducer)
+-	rmdir --ignore-fail-on-non-empty $(transducerpath)
+-	rm -f $(analyzer_script)
+-	rm -f $(generator_script)
++	rm -f $(DESTDIR)$(transducerpath)/$(analyzer_transducer)
++	rm -f $(DESTDIR)$(transducerpath)/$(generator_transducer)
++	rmdir --ignore-fail-on-non-empty $(DESTDIR)$(transducerpath)
++	rm -f $(DESTDIR)$(analyzer_script)
++	rm -f $(DESTDIR)$(generator_script)
