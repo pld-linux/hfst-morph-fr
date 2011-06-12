@@ -15,7 +15,7 @@ Requires:	hfst
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This is an French morphological transducer for HFST. It comes from
+This is a French morphological transducer for HFST. It comes from
 Morphalou project: <http://www.cnrtl.fr/lexiques/morphalou/>.
 
 %description -l pl.UTF-8
